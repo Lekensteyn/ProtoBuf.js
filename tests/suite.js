@@ -785,6 +785,20 @@
             test.done();
         },
         
+        // deprecated "Groups" feature
+        // https://developers.google.com/protocol-buffers/docs/proto#nested
+        "group": function(test) {
+            try {
+                var builder = ProtoBuf.loadProtoFile(__dirname+"/group.proto");
+                var SearchResponse = builder.build("SearchResponse");
+                var msg = new SearchResponse();
+                test.ok(msg.result instanceof SearchResponse.Result);
+            } catch (e) {
+                fail(e);
+            }
+            test.done();
+        },
+        
         "imports": function(test) {
             try {
                 var builder = ProtoBuf.loadProtoFile(__dirname+"/imports.proto");
